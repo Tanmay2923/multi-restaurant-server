@@ -225,11 +225,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🐛 Issues
 
-If you encounter any issues, please [create an issue](https://github.com/yourusername/multi-restaurant-server/issues) on GitHub.
+If you encounter any issues, please [create an issue](https://github.com/Tanmay2923/multi-restaurant-server/issues) on GitHub.
 
 ## 📞 Support
 
-For support, email your-email@example.com or join our Slack channel.
+For support, email tmm4687@gmail.com or join our Slack channel.
 
 ---
 
