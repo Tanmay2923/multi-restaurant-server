@@ -1,0 +1,154 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  firstName String?
+  lastName  String?
+  phone     String?
+  role      String   // Changed from enum to String
+  orders    Order[]
+  loyaltyPoints Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Location {
+  id          Int       @id @default(autoincrement())
+  name        String
+  address     String
+  phone       String?
+  email       String?
+  isActive    Boolean   @default(true)
+  qrCodes     QRCode[]
+  menu        Menu[]
+  orders      Order[]
+  promotions  PromotionLocation[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Menu {
+  id          Int         @id @default(autoincrement())
+  title       String
+  description String
+  price       Float
+  category    String
+  imageUrl    String?
+  isAvailable Boolean     @default(true)
+  orderItems  OrderItem[]
+  customizations Customization[]
+  location    Location    @relation(fields: [locationId], references: [id])
+  locationId  Int
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Order {
+  id        Int        @id @default(autoincrement())
+  status    String   // Changed from enum to String
+  total     Float
+  items     OrderItem[]
+  location  Location   @relation(fields: [locationId], references: [id])
+  locationId Int
+  user      User       @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model OrderItem {
+  id           Int                    @id @default(autoincrement())
+  quantity     Int
+  priceAtTime  Float
+  customizations OrderItemCustomization[]
+  menu         Menu                   @relation(fields: [menuId], references: [id])
+  menuId       Int
+  order        Order                  @relation(fields: [orderId], references: [id])
+  orderId      Int
+  createdAt    DateTime               @default(now())
+}
+
+model Customization {
+  id          Int     @id @default(autoincrement())
+  name        String
+  price       Float
+  category    String
+  menu        Menu    @relation(fields: [menuId], references: [id])
+  menuId      Int
+  orderItems  OrderItemCustomization[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model OrderItemCustomization {
+  id               Int           @id @default(autoincrement())
+  orderItem        OrderItem     @relation(fields: [orderItemId], references: [id])
+  orderItemId      Int
+  customization    Customization @relation(fields: [customizationId], references: [id])
+  customizationId  Int
+  quantity         Int           @default(1)
+  priceAtTime      Float
+}
+
+model Promotion {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  type        String   // Changed from enum to String
+  value       Float
+  minOrderValue Float?
+  startDate   DateTime
+  endDate     DateTime
+  isActive    Boolean  @default(true)
+  usageLimit  Int?
+  usageCount  Int      @default(0)
+  locations   PromotionLocation[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PromotionLocation {
+  id          Int       @id @default(autoincrement())
+  promotion   Promotion @relation(fields: [promotionId], references: [id])
+  promotionId Int
+  location    Location  @relation(fields: [locationId], references: [id])
+  locationId  Int
+  
+  @@unique([promotionId, locationId])
+}
+
+model Analytics {
+  id          Int      @id @default(autoincrement())
+  locationId  Int
+  date        DateTime
+  totalOrders Int
+  totalRevenue Float
+  avgOrderValue Float
+  peakHour    Int?
+  popularItems String?  // Changed from Json to String
+  createdAt   DateTime @default(now())
+  
+  @@unique([locationId, date])
+}
+
+model QRCode {
+  id         Int      @id @default(autoincrement())
+  code       String   @unique
+  location   Location @relation(fields: [locationId], references: [id])
+  locationId Int
+  tableNumber String?
+  isActive   Boolean  @default(true)
+  scannedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
