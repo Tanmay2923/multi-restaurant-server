@@ -229,7 +229,7 @@ If you encounter any issues, please [create an issue](https://github.com/Tanmay2
 
 ## 📞 Support
 
-For support, email tmm4687@gmail.com or join our Slack channel.
+For support, email tmm4687@gmail.com .
 
 ---
 
