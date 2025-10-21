@@ -2,7 +2,7 @@
 
 A comprehensive backend server for managing multiple restaurant locations with real-time ordering, analytics, and QR code-based menu system.
 
-## 🚀 Features
+## Features
 
 - **Multi-Location Management**: Support for multiple restaurant locations
 - **Real-time Ordering**: Socket.IO integration for live order updates
@@ -13,7 +13,7 @@ A comprehensive backend server for managing multiple restaurant locations with r
 - **Analytics Dashboard**: Revenue and performance analytics
 - **Secure API**: Rate limiting, CORS, and security middleware
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Backend**: Node.js, Express.js, TypeScript
 - **Database**: SQLite with Prisma ORM
@@ -25,13 +25,13 @@ A comprehensive backend server for managing multiple restaurant locations with r
 - **Payments**: Stripe integration
 - **QR Codes**: QRCode generation
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js (v18 or higher)
 - npm or yarn
 - Git
 
-## 🔧 Installation
+## Installation
 
 1. **Clone the repository**
    ```bash
@@ -89,7 +89,7 @@ A comprehensive backend server for managing multiple restaurant locations with r
    npm run build
    ```
 
-## 🚀 Running the Application
+## Running the Application
 
 ### Development Mode
 ```bash
@@ -116,7 +116,7 @@ npm run prisma:migrate
 npm run prisma:seed
 ```
 
-## 📚 API Documentation
+## API Documentation
 
 ### Authentication Endpoints
 - `POST /api/auth/register` - User registration
@@ -148,13 +148,13 @@ npm run prisma:seed
 ### Analytics Endpoints (Protected)
 - `GET /api/analytics/:locationId` - Get analytics data
 
-## 🧪 Testing
+## Testing
 
 ```bash
 npm test
 ```
 
-## 📝 Database Schema
+## Database Schema
 
 The application uses the following main entities:
 
@@ -166,7 +166,7 @@ The application uses the following main entities:
 - **QRCode**: QR codes for tables/locations
 - **Analytics**: Performance metrics
 
-## 🔐 Security Features
+## Security Features
 
 - JWT authentication
 - Password hashing with bcrypt
@@ -175,13 +175,13 @@ The application uses the following main entities:
 - Helmet security headers
 - Input validation
 
-## 🌐 Socket.IO Events
+## Socket.IO Events
 
 - `order:created` - New order notification
 - `order:updated` - Order status updates
 - `order:cancelled` - Order cancellation
 
-## 📱 Environment Variables
+## Environment Variables
 
 | Variable | Description | Default |
 |----------|-------------|---------|
@@ -191,7 +191,7 @@ The application uses the following main entities:
 | `JWT_SECRET` | JWT signing secret | - |
 | `CORS_ORIGIN` | Allowed CORS origin | http://localhost:3000 |
 
-## 🚀 Deployment
+## Deployment
 
 ### Using PM2
 ```bash
@@ -211,7 +211,7 @@ EXPOSE 3001
 CMD ["npm", "start"]
 ```
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -219,15 +219,15 @@ CMD ["npm", "start"]
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🐛 Issues
+## Issues
 
 If you encounter any issues, please [create an issue](https://github.com/Tanmay2923/multi-restaurant-server/issues) on GitHub.
 
-## 📞 Support
+## Support
 
 For support, email tmm4687@gmail.com .
 
